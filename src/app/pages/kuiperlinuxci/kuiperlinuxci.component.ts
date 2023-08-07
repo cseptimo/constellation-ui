@@ -124,7 +124,7 @@ export class KuiperlinuxciComponent implements OnInit {
       aggregatesTop.forEach(aggr => {
         var key = Object.keys(aggr)[0];
         this.dataAggregates.push(aggr[key]);
-
+        this.isBoardOnline();
         this.dataAggregates.forEach((element: any) => {
           Boards.jenkins_project_name = (element['jenkins_project_name']);
           Boards.jenkins_build_number = (element['jenkins_build_number']);
@@ -174,7 +174,7 @@ export class KuiperlinuxciComponent implements OnInit {
           this.pytest_skipped = Boards.pytest_skipped;
           this.pytest_tests = Boards.pytest_tests;
 
-          this.isBoardOnline();
+          
 
         })
 
@@ -213,17 +213,16 @@ export class KuiperlinuxciComponent implements OnInit {
         this.pstatusArrayToDisplay = ['Online'];
         this.picon = this.imagePath + this.pstatusIcon[0];
         onlineCount++; // Increment the count when the board is online
+        this.onlineBoards = onlineCount;
+        console.log('uboot ', this.uboot_reached, 'linux', this.linux_prompt_reached, 'status: ', this.pstatusArrayToDisplay, 'icon: ', this.picon);
+        return true;
       }
       else{
         this.pstatusArrayToDisplay = ['Offline'];
         this.picon = this.imagePath + this.pstatusIcon[1];
+        console.log('uboot ', this.uboot_reached, 'linux', this.linux_prompt_reached, 'status: ', this.pstatusArrayToDisplay, 'icon: ', this.picon);
+        return false;
       }
-
-      this.onlineBoards = onlineCount;
-      console.log('uboot ', this.uboot_reached, 'linux', this.linux_prompt_reached, 'status: ', this.pstatus, 'icon: ', this.picon);
-      return this.boot_folder_name, this.picon + this.pstatus;
-    
-    
   }
   // getBoardStatus() {
   //   let passedCount = 0;
