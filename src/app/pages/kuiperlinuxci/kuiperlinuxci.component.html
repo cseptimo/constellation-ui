@@ -71,7 +71,7 @@
                             <td class="table-output" >{{ bd.linux_prompt_reached }} {{ bd.uboot_reached }}</td>
                             <td class="table-output"> 
                                {{ this.pstatus }} {{bstatus}} {{ bdstatus}}
-                               <ng-container *ngIf="isBoardOnline()">
+                               <ng-container *ngIf="bd.boot_folder_name == isBoardOnline()">
                                 <a type="button" containerClass="customClass" [tooltip]="onlinePassedTooltip">
                                     <span class="status-icon">
                                         <img [src]="this.picon" />
